@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+<h1></h1>
+
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 lg:py-16 space-y-8 lg:space-y-8">
+        <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+            <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{ object.title }}</h2>
+        </div> 
+    </div>
+    <div class="flex justify-center items-center">
+        <img src="{{ object.get_display_image}}" width="500">
+    </div>
+    <div class="flex justify-center items-center">
+        <div class="py-4 text-3xl lg:text-xl space-y-4">
+            {{ object.description|linebreaks}}
+        </div>
+    </div>
+
+</section>
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="">
+        <div class="mx-auto max-w-screen-sm text-center">
+            <h2 class="mb-4 text-3xl lg:text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white">Lessons</h2>
+        </div> 
+        {% include 'courses/snippets/list-display.html' with queryset=lesson_queryset %}
+    </div>
+
+</section>
+
+  
+
+{% endblock content %}

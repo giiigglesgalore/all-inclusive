@@ -1,0 +1,4 @@
+.venv/
+local=cdn
+*.code-workspace
+*.md

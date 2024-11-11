@@ -1,0 +1,35 @@
+{% load django_htmx %}
+{% load static %}
+<script src="{% static 'vendors/flowbite.min.js' %}"></script>
+<script src="{% static 'vendors/cld-video-player.min.js' %}"></script>
+<script src="{% static 'vendors/htmx.min.js' %}"></script>
+{% django_htmx_script %}
+
+<script defer>
+
+    function renderVideoElement(videoPlayerElement) {
+        const currentVideoId = videoPlayerElement.getAttribute('id')
+        const videoPlayerId = `${currentVideoId}` + '-aj-' + Math.random().toString(36).substr(2, 9);
+        videoPlayerElement.setAttribute("id", videoPlayerId);
+        const cloudName = videoPlayerElement.dataset.cloudName;
+        const videoUrl = videoPlayerElement.dataset.videoUrl;
+        if (cloudName && videoUrl) {
+            const cld = cloudinary.videoPlayer(videoPlayerId, {
+                cloudName: cloudName
+            });
+            cld.source(videoUrl);
+        }
+    }
+
+    function renderAllVideos() {
+        const videoPlayerClassName = 'aj-video';
+        const videoPlayerElements = document.getElementsByClassName(videoPlayerClassName);
+        console.log(videoPlayerElements);
+        for (let el of videoPlayerElements) {
+            console.log(el);
+            renderVideoElement(el);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderAllVideos)
+</script>

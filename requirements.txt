@@ -1,0 +1,20 @@
+django
+django-htmx
+requests
+django-browser-reload
+
+# for django image
+pillow
+
+# for storage
+cloudinary 
+
+# FOR DATABASE URL
+python-decouple
+dj_database_url
+psycopg[binary]
+
+# FOR CLOUDFLARE STORAGE
+django-storages[s3]
+
+

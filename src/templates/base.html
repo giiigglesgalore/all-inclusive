@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    {% block head_title %}
+    Course Platform
+    {% endblock head_title%}
+  </title>
+  {% include 'base/css.html' %}
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  {% include 'base/navbar.html' %}
+  
+  <div class="{% if '/logout' in request.path or '/login' in request.path %} {% else %} py-8 px-4 mx-auto max-w-screen-xl {% endif %}">
+    {% block content %}  
+
+    <h1 class="text-3xl font-bold underline">
+      Hello from base
+    </h1>
+    
+    {% endblock content %}
+  </div>  
+
+    {% include 'base/js.html' %}
+</body>
+</html>
